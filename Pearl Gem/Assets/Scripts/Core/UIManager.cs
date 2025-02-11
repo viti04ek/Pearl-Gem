@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Text _pearlsText;
+    [SerializeField] private Text _shotsText;
+
+    public void UpdatePearlsText(int pearls)
     {
-        
+        _pearlsText.text = pearls.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateShotsText(int shots)
     {
-        
+        _shotsText.text = shots.ToString();
     }
 }

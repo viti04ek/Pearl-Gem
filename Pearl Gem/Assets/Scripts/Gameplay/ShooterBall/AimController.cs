@@ -63,6 +63,8 @@ public class AimController : MonoBehaviour
     {
         if (_currentBall == null) return;
 
+        Services.GameManager.Shoot();
+        
         var shooterBall = _currentBall.GetComponent<ShooterBall>();
         shooterBall.Launch(_aimDirection);
 
@@ -74,7 +76,7 @@ public class AimController : MonoBehaviour
     {
         if (_currentBall != null) return;
 
-        _ballColor = Sevices.GameManager.BallColors[Random.Range(0, Sevices.GameManager.BallColors.Count)];
+        _ballColor = Services.GameManager.BallColors[Random.Range(0, Services.GameManager.BallColors.Count)];
         _currentBall = Instantiate(_shooterBallPrefab, _shootPoint.position, Quaternion.identity);
         _currentBall.GetComponent<ShooterBall>().SetColor(_ballColor);
 

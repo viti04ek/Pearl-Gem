@@ -7,17 +7,20 @@ public class SphereController : MonoBehaviour
 {
     [SerializeField] private BallFactory _ballFactory;
     
-    private int _layers = 5;
-    private const float LayerSpacing = 0.3f;
-    private const float BallSize = 0.14f;
+    private int _layers = 3;
+    private const float LayerSpacing = 0.5f;
+    private const float BallSize = 0.2f;
     private const float RotationSpeed = 20f;
-
+    private const float MinRadius = 1f;
+    private int _knockedBalls = 0;
+    private int _totalBalls = 0;
     private readonly List<Vector3> _plateauCenters = new();
     private readonly Dictionary<Vector3, Color> _plateauMap = new();
     private readonly List<List<GameObject>> _sphereLayers = new();
 
     private void Start()
     {
+        _layers = Services.GameManager.StartGame();
         GenerateSphere();
     }
 
@@ -28,17 +31,18 @@ public class SphereController : MonoBehaviour
 
     private void GenerateSphere()
     {
-        var maxRadius = _layers * LayerSpacing;
+        _totalBalls = 0;
+        var maxRadius = _layers * LayerSpacing + MinRadius;
         
         for (var layer = 0; layer < _layers; layer++)
         {
-            var plateauCount = Random.Range(Sevices.GameManager.BallColors.Count - 1, Sevices.GameManager.BallColors.Count + 3);
+            var plateauCount = Random.Range(Services.GameManager.BallColors.Count - 1, Services.GameManager.BallColors.Count + 3);
             
             for (var i = 0; i < plateauCount; i++)
             {
                 var randomPoint = Random.onUnitSphere * maxRadius;
                 _plateauCenters.Add(randomPoint);
-                _plateauMap[randomPoint] = Sevices.GameManager.BallColors[Random.Range(0, Sevices.GameManager.BallColors.Count)];
+                _plateauMap[randomPoint] = Services.GameManager.BallColors[Random.Range(0, Services.GameManager.BallColors.Count)];
             }
             
             var layerBalls = new List<GameObject>();
@@ -59,6 +63,7 @@ public class SphereController : MonoBehaviour
                 var ball = _ballFactory.CreateBall(transform.position + position, selectedColor, transform, this);
 
                 layerBalls.Add(ball);
+                _totalBalls++;
             }
 
             _sphereLayers.Add(layerBalls);
@@ -103,6 +108,9 @@ public class SphereController : MonoBehaviour
     public void DestroyPlateau(Ball hitBall)
     {
         var ballsToDestroy = FindConnectedPlateau(hitBall);
+        _knockedBalls += ballsToDestroy.Count;
+        Services.UIManager.UpdatePearlsText(_knockedBalls);
+        Services.GameManager.IsGameFinished(_totalBalls, _knockedBalls);
 
         foreach (var ballObj in ballsToDestroy)
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class Sevices
+public static class Services
 {
     public static GameManager GameManager;
     public static UIManager UIManager;
@@ -8,7 +8,7 @@ public static class Sevices
     public static void Initialize()
     {
         GameManager = GetComponentFromScene<GameManager>();
-        //UIManager = GetComponentFromScene<UIManager>();
+        UIManager = GetComponentFromScene<UIManager>();
     }
     
     private static T GetComponentFromScene<T>() where T : Object 
