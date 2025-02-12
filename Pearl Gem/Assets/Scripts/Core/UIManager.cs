@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Top panel")]
     [SerializeField] private Text _pearlsText;
     [SerializeField] private Text _shotsText;
     [SerializeField] private List<Image> _starBars;
@@ -13,14 +15,24 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite _fullStarBar;
     [SerializeField] private Sprite _emptyStarBar;
     [SerializeField] private Sprite _fullStar;
+    
+    [Header("Settings panel")]
     [SerializeField] private GameObject _settingsPanel;
     [SerializeField] private GameObject _checkSoundImg;
     [SerializeField] private GameObject _checkVibrationImg;
+    
+    [Header("Down panel")]
     [SerializeField] private Image _currentBallImg;
     [SerializeField] private Image _nextBallImg;
     [SerializeField] private Text _shotsOnBallText;
 
+    [Header("Win panel")] 
+    [SerializeField] private GameObject _winPanel;
+    [SerializeField] private Text _levelText;
+    [SerializeField] private Text _winPanelCoinText;
+
     private AimController _aimController;
+    private const float _tweenDuration = 0.7f;
 
     public void FindAimController()
     {
@@ -61,9 +73,16 @@ public class UIManager : MonoBehaviour
     public void OpenSettings()
     {
         _settingsPanel.SetActive(true);
+        _settingsPanel.GetComponent<RectTransform>().DOAnchorPosX(0, _tweenDuration);
     }
 
     public void CloseSettings()
+    {
+        _settingsPanel.GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, _tweenDuration);
+        Invoke(nameof(HideSettingsPanel), _tweenDuration);
+    }
+
+    private void HideSettingsPanel()
     {
         _settingsPanel.SetActive(false);
     }
@@ -93,5 +112,13 @@ public class UIManager : MonoBehaviour
     {
         _aimController.ChangeColor();
         UpdateBallsColor();
+    }
+
+    public void ShowWinPanel()
+    {
+        _winPanel.SetActive(true);
+        _levelText.text = $"Level {Services.GameManager.Level} completed!";
+        _winPanelCoinText.text = Services.GameManager.Coins.ToString();
+        _winPanel.GetComponent<RectTransform>().DOAnchorPosX(0, _tweenDuration);
     }
 }

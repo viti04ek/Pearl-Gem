@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public List<Color> BallColors;
 
     [SerializeField] private GameObject _starPrefab;
+    
+    public int Level { get; private set; }
+    public int Coins { get; private set; }
 
     private int _shots;
     private SphereController _sphere;
@@ -36,18 +39,19 @@ public class GameManager : MonoBehaviour
         Services.UIManager.UpdateShotsText(_shots);
         _starObject = null;
         _successfulHits = 0;
+        Level = 1;
+        Coins = 100;
     }
 
     public void IsGameFinished(int totalPearls, int knockedPearls)
     {
-        if (_shots < 1)
-        {
-            Debug.Log("Lost");
-        }
-        
         if (totalPearls == knockedPearls)
         {
-            Debug.Log("Game finished");
+            Win();
+        }
+        else if (_shots < 1)
+        {
+            Debug.Log("Lost");
         }
     }
 
@@ -96,5 +100,10 @@ public class GameManager : MonoBehaviour
     public void HitStar()
     {
         _sphere.DestroyAllBalls();
+    }
+
+    private void Win()
+    {
+        Services.UIManager.ShowWinPanel();
     }
 }
