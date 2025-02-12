@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     
     public int Level { get; private set; }
     public int Coins { get; private set; }
+    public int RainbowBallsAmount { get; private set; }
 
     private int _shots;
     private SphereController _sphere;
@@ -35,14 +36,14 @@ public class GameManager : MonoBehaviour
         _sphere = null;
         _sphere = FindObjectOfType<SphereController>();
         var layers = Random.Range(MinLayers, MaxLayers);
-        _shots = 0;
         _shots = layers * 5;
         _sphere.SetLayers(layers);
         Services.UIManager.UpdateShotsText(_shots);
-        _starObject = null;
-        _successfulHits = 0;
         Level = Services.DataManager.LoadField<int>(DataManager.LevelKey);
         Coins = Services.DataManager.LoadField<int>(DataManager.CoinKey);
+        RainbowBallsAmount = Services.DataManager.LoadField<int>(DataManager.RainbowBallsKey);
+        RainbowBallsAmount = 9;
+        Services.UIManager.UpdateRainbowBallsAmountText();
     }
 
     public void IsGameFinished(int totalPearls = 1, int knockedPearls = 0)
@@ -117,5 +118,15 @@ public class GameManager : MonoBehaviour
     private void Lose()
     {
         Services.UIManager.ShowLosePanel1();
+    }
+
+    public bool TryToSelectRainbowBall()
+    {
+        if (RainbowBallsAmount < 1) 
+            return false;
+
+        RainbowBallsAmount--;
+        Services.DataManager.SaveField(DataManager.RainbowBallsKey, RainbowBallsAmount);
+        return true;
     }
 }

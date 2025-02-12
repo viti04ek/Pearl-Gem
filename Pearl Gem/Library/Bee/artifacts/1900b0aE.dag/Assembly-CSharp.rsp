@@ -365,6 +365,7 @@
 "Assets/Scripts/Data/GameData.cs"
 "Assets/Scripts/Gameplay/ShooterBall/AimController.cs"
 "Assets/Scripts/Gameplay/ShooterBall/ShooterBall.cs"
+"Assets/Scripts/Gameplay/ShooterBall/ShooterRainbowBall.cs"
 "Assets/Scripts/Gameplay/Sphere/Ball.cs"
 "Assets/Scripts/Gameplay/Sphere/BallFactory.cs"
 "Assets/Scripts/Gameplay/Sphere/SphereController.cs"

@@ -6,6 +6,7 @@ public class AimController : MonoBehaviour
 {
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private GameObject _shooterBallPrefab;
+    [SerializeField] private GameObject _shooterRainbowBallPrefab;
     [SerializeField] private LineRenderer _aimLine;
     
     public Color BallColor { get; private set; }
@@ -85,9 +86,13 @@ public class AimController : MonoBehaviour
 
     private void Shoot()
     {
-        if (_currentBall == null) return;
-
-        Services.GameManager.Shoot();
+        if (_currentBall == null) 
+            return;
+        
+        if (_currentBall.GetComponent<ShooterRainbowBall>())
+            Services.UIManager.ActivateChangeBallBtn();
+        else
+            Services.GameManager.Shoot();
         
         var shooterBall = _currentBall.GetComponent<ShooterBall>();
         shooterBall.Launch(_aimDirection);
@@ -141,5 +146,16 @@ public class AimController : MonoBehaviour
             var point = startPosition + velocity * time + Physics.gravity * (0.5f * time * time);
             _aimLine.SetPosition(i, point);
         }
+    }
+
+    public void GenerateRainbowBall()
+    {
+        if (_currentBall != null)
+            Destroy(_currentBall);
+
+        _currentBall = Instantiate(_shooterRainbowBallPrefab, _shootPoint.position, Quaternion.identity);
+        BallColor = Color.white;
+        _ballRigidbody = _currentBall.GetComponent<Rigidbody>();
+        Services.UIManager.SetRainbowBallImage();
     }
 }

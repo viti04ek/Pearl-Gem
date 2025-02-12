@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class ShooterBall : Ball
 {
-    private bool _hasCollided = false;
+    protected bool _hasCollided = false;
     
-    private const float Speed = 15f;
-    private const string BallKey = "Ball";
-    private const string StarKey = "Star";
+    protected const float Speed = 15f;
+    protected const string BallKey = "Ball";
+    protected const string StarKey = "Star";
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class ShooterBall : Ball
         _rigidbody.velocity = direction.normalized * Speed;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         if (_hasCollided) return;
 

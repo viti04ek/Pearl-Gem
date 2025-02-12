@@ -25,6 +25,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image _currentBallImg;
     [SerializeField] private Image _nextBallImg;
     [SerializeField] private Text _shotsOnBallText;
+    [SerializeField] private Button _changeBallBtn;
+    [SerializeField] private Text _rainbowBallsAmountText;
+    [SerializeField] private Button _rainbowBallBonusBtn;
+    [SerializeField] private Sprite _rainbowBallSprite;
+    [SerializeField] private Sprite _circle;
 
     [Header("Win panel")] 
     [SerializeField] private GameObject _winPanel;
@@ -162,5 +167,36 @@ public class UIManager : MonoBehaviour
     public void Restart()
     {
         Services.SceneManager.ReLoadScene();
+    }
+
+    public void SelectRainbowBall()
+    {
+        if (!Services.GameManager.TryToSelectRainbowBall())
+            return;
+        
+        _changeBallBtn.interactable = false;
+        _rainbowBallBonusBtn.interactable = false;
+        UpdateRainbowBallsAmountText();
+        _aimController.GenerateRainbowBall();
+    }
+
+    public void ActivateChangeBallBtn()
+    {
+        _currentBallImg.sprite = _circle;
+        _changeBallBtn.interactable = true;
+        _rainbowBallBonusBtn.interactable = true;
+    }
+
+    public void UpdateRainbowBallsAmountText()
+    {
+        _rainbowBallsAmountText.text = Services.GameManager.RainbowBallsAmount.ToString();
+    }
+
+    public void SetRainbowBallImage()
+    {
+        var newColor = Color.white;
+        newColor.a = 255;
+        _currentBallImg.color = newColor;
+        _currentBallImg.sprite = _rainbowBallSprite;
     }
 }
