@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite _fullStarBar;
     [SerializeField] private Sprite _emptyStarBar;
     [SerializeField] private Sprite _fullStar;
+    [SerializeField] private GameObject _settingsPanel;
+    [SerializeField] private GameObject _checkSoundImg;
+    [SerializeField] private GameObject _checkVibrationImg;
 
     public void UpdatePearlsText(int pearls)
     {
@@ -39,5 +42,25 @@ public class UIManager : MonoBehaviour
     public void AddFullStar()
     {
         _starImg.sprite = _fullStar;
+    }
+
+    public void OpenSettings()
+    {
+        _settingsPanel.SetActive(true);
+    }
+
+    public void CloseSettings()
+    {
+        _settingsPanel.SetActive(false);
+    }
+
+    public void CheckSound()
+    {
+        _checkSoundImg.SetActive(!_checkSoundImg.activeSelf);
+    }
+
+    public void CheckVibration()
+    {
+        _checkVibrationImg.SetActive(!_checkVibrationImg.activeSelf);
     }
 }

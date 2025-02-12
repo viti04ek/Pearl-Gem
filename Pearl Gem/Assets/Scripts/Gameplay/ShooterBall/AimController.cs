@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AimController : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class AimController : MonoBehaviour
 
     private void HandleAiming()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
         {
             _isAiming = true;
             _aimLine.enabled = true;
@@ -51,12 +52,30 @@ public class AimController : MonoBehaviour
             DrawTrajectory(_aimDirection);
         }
 
-        if (Input.GetMouseButtonUp(0) && _isAiming)
+        if (Input.GetMouseButtonUp(0) && _isAiming && !IsPointerOverUI())
         {
             Shoot();
             _isAiming = false;
             _aimLine.enabled = false;
         }
+    }
+    
+    private bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null)
+            return false;
+        
+        if (Application.isEditor)
+            return EventSystem.current.IsPointerOverGameObject();
+
+        var eventData = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+        return results.Count > 0;
     }
 
     private void Shoot()
