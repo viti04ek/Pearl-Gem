@@ -148,4 +148,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ballRenderer: {fileID: 4111384077440803810}
   _rigidbody: {fileID: 7435803899939530295}
-  _speed: 15

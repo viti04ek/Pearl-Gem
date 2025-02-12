@@ -124,8 +124,9 @@ public class SphereController : MonoBehaviour
                 layer.Remove(ballObj);
                 break;
             }
-
-            Destroy(ballObj);
+            
+            ballObj.GetComponent<Ball>().IsKinematic();
+            //Destroy(ballObj);
         }
     }
 
@@ -173,7 +174,8 @@ public class SphereController : MonoBehaviour
     {
         foreach (var ball in _sphereLayers.SelectMany(layer => layer))
         {
-            Destroy(ball);
+            ball.GetComponent<Ball>().IsKinematic();
+            //Destroy(ball);
         }
 
         _knockedBalls = _totalBalls;

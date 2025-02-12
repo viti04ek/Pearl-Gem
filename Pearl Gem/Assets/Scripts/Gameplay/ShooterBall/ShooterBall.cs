@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ShooterBall : Ball
 {
-    [SerializeField] private Rigidbody _rigidbody;
     private float _speed = 15f;
     private bool _hasCollided = false;
     private const string _ballKey = "Ball";
