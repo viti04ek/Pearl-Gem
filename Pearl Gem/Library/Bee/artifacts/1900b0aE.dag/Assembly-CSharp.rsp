@@ -360,6 +360,8 @@
 "Assets/Scripts/Core/GameManager.cs"
 "Assets/Scripts/Core/Services.cs"
 "Assets/Scripts/Core/UIManager.cs"
+"Assets/Scripts/Data/DataManager.cs"
+"Assets/Scripts/Data/GameData.cs"
 "Assets/Scripts/Gameplay/ShooterBall/AimController.cs"
 "Assets/Scripts/Gameplay/ShooterBall/ShooterBall.cs"
 "Assets/Scripts/Gameplay/Sphere/Ball.cs"

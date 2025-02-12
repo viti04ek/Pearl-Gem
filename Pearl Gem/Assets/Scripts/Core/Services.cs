@@ -2,24 +2,11 @@ using UnityEngine;
 
 public static class Services
 {
-    public static GameManager GameManager;
-    public static UIManager UIManager;
+    public static GameManager GameManager { get; private set; }
+    public static UIManager UIManager { get; private set; }
+    public static DataManager DataManager { get; private set; }
 
-    public static void Initialize()
-    {
-        GameManager = GetComponentFromScene<GameManager>();
-        UIManager = GetComponentFromScene<UIManager>();
-    }
-    
-    private static T GetComponentFromScene<T>() where T : Object 
-    {
-        var component = GameObject.FindObjectOfType<T>(includeInactive: true);
-
-        if (component == null) 
-        {
-            UnityEngine.Debug.LogWarning($"Unable to find component {typeof(T)} on the scene");
-        }
-
-        return component;
-    }
+    public static void Register(GameManager gm) => GameManager = gm;
+    public static void Register(UIManager ui) => UIManager = ui;
+    public static void Register(DataManager dm) => DataManager = dm;
 }

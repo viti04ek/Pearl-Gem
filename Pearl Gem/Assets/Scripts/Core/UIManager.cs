@@ -40,7 +40,13 @@ public class UIManager : MonoBehaviour
     private AimController _aimController;
     private const float TweenDuration = 0.7f;
 
-    public void FindAimController()
+    private void Awake()
+    {
+        Services.Register(this);
+        FindAimController();
+    }
+
+    private void FindAimController()
     {
         _aimController = FindObjectOfType<AimController>();
         var screenPos = Camera.main.WorldToScreenPoint(_aimController.gameObject.transform.position);

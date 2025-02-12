@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private SphereController _sphere;
     private int _successfulHits = 0;
     private GameObject _starObject;
+    private int _pearlsScored;
     
     private const int HitsForStar = 4;
     private const int MinLayers = 2;
@@ -26,9 +27,7 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
-        Services.Initialize();
-        DontDestroyOnLoad(gameObject);
-        Services.UIManager.FindAimController();
+        Services.Register(this);
     }
 
     public void StartGame()
@@ -42,14 +41,15 @@ public class GameManager : MonoBehaviour
         Services.UIManager.UpdateShotsText(_shots);
         _starObject = null;
         _successfulHits = 0;
-        Level = 1;
-        Coins = 100;
+        Level = Services.DataManager.LoadField<int>(DataManager.LevelKey);
+        Coins = Services.DataManager.LoadField<int>(DataManager.CoinKey);
     }
 
     public void IsGameFinished(int totalPearls = 1, int knockedPearls = 0)
     {
         if (totalPearls == knockedPearls)
         {
+            _pearlsScored = totalPearls;
             Win();
         }
         else if (_shots < 1)
@@ -109,6 +109,9 @@ public class GameManager : MonoBehaviour
     {
         Coins += MoneyForWin + MoneyForBall * _shots;
         Services.UIManager.ShowWinPanel();
+        Services.DataManager.SaveField(DataManager.CoinKey, Coins);
+        Services.DataManager.SaveField(DataManager.LevelKey, Level + 1);
+        Services.DataManager.SaveField(DataManager.LevelPearlScoreKey, _pearlsScored);
     }
 
     private void Lose()
