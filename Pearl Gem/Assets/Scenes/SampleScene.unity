@@ -1370,6 +1370,7 @@ GameObject:
   - component: {fileID: 893090814}
   - component: {fileID: 893090816}
   - component: {fileID: 893090815}
+  - component: {fileID: 893090817}
   m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
@@ -1434,6 +1435,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893090813}
   m_CullTransparentMesh: 1
+--- !u!95 &893090817
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893090813}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: baa027f596d3e4c41a7df592ed2b800a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &910822686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,6 +2994,7 @@ MonoBehaviour:
   _checkVibrationImg: {fileID: 910822686}
   _currentBallImg: {fileID: 1622440149}
   _nextBallImg: {fileID: 331548233}
+  _shotsOnBallText: {fileID: 318954081}
 --- !u!4 &1672420350
 Transform:
   m_ObjectHideFlags: 0

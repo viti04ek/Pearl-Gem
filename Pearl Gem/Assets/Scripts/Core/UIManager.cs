@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _checkVibrationImg;
     [SerializeField] private Image _currentBallImg;
     [SerializeField] private Image _nextBallImg;
+    [SerializeField] private Text _shotsOnBallText;
 
     private AimController _aimController;
 
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
     public void UpdateShotsText(int shots)
     {
         _shotsText.text = shots.ToString();
+        _shotsOnBallText.text = shots.ToString();
     }
 
     public void AddStarBar(int index)
