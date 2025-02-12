@@ -7,13 +7,16 @@ public class AimController : MonoBehaviour
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private GameObject _shooterBallPrefab;
     [SerializeField] private LineRenderer _aimLine;
+    
+    public Color BallColor { get; private set; }
+    public Color NextBallColor { get; private set; }
+    
     private float _maxAimAngle = 60f;
     private int _trajectorySteps = 30;
     private float _timeStep = 0.05f;
     private Camera _mainCamera;
     private bool _isAiming = false;
     private Vector3 _aimDirection;
-    private Color _ballColor;
     private GameObject _currentBall;
     private Rigidbody _ballRigidbody;
 
@@ -22,6 +25,7 @@ public class AimController : MonoBehaviour
         _mainCamera = Camera.main;
         _aimLine.positionCount = _trajectorySteps;
         _aimLine.enabled = false;
+        GenerateBallsColor();
         GenerateNextBall();
     }
 
@@ -88,23 +92,41 @@ public class AimController : MonoBehaviour
         shooterBall.Launch(_aimDirection);
 
         _currentBall = null;
+        GenerateBallsColor(NextBallColor);
         Invoke(nameof(GenerateNextBall), 1f);
+    }
+
+    private void GenerateBallsColor(Color? currentColor = null)
+    {
+        BallColor = currentColor ?? Services.GameManager.BallColors[Random.Range(0, Services.GameManager.BallColors.Count)];
+        do
+        {
+            NextBallColor = Services.GameManager.BallColors[Random.Range(0, Services.GameManager.BallColors.Count)];
+        } while (ColorUtility.ToHtmlStringRGB(BallColor) == ColorUtility.ToHtmlStringRGB(NextBallColor));
+        
+        Services.UIManager.UpdateBallsColor();
     }
 
     private void GenerateNextBall()
     {
-        if (_currentBall != null) return;
+        if (_currentBall != null)
+            Destroy(_currentBall);
 
-        _ballColor = Services.GameManager.BallColors[Random.Range(0, Services.GameManager.BallColors.Count)];
         _currentBall = Instantiate(_shooterBallPrefab, _shootPoint.position, Quaternion.identity);
-        _currentBall.GetComponent<ShooterBall>().SetColor(_ballColor);
+        _currentBall.GetComponent<ShooterBall>().SetColor(BallColor);
 
         _ballRigidbody = _currentBall.GetComponent<Rigidbody>();
     }
 
+    public void ChangeColor()
+    {
+        (BallColor, NextBallColor) = (NextBallColor, BallColor);
+        GenerateNextBall();
+    }
+
     private void DrawTrajectory(Vector3 direction)
     {
-        _aimLine.material.color = _ballColor;
+        _aimLine.material.color = BallColor;
         var startPosition = _shootPoint.position;
         var velocity = direction * (_ballRigidbody.mass * 15f);
 

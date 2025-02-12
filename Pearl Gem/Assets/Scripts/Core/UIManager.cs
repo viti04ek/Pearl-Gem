@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _settingsPanel;
     [SerializeField] private GameObject _checkSoundImg;
     [SerializeField] private GameObject _checkVibrationImg;
+    [SerializeField] private Image _currentBallImg;
+    [SerializeField] private Image _nextBallImg;
+
+    private AimController _aimController;
+
+    public void FindAimController()
+    {
+        _aimController = FindObjectOfType<AimController>();
+        var screenPos = Camera.main.WorldToScreenPoint(_aimController.gameObject.transform.position);
+        _currentBallImg.rectTransform.position = screenPos;
+    }
 
     public void UpdatePearlsText(int pearls)
     {
@@ -62,5 +74,22 @@ public class UIManager : MonoBehaviour
     public void CheckVibration()
     {
         _checkVibrationImg.SetActive(!_checkVibrationImg.activeSelf);
+    }
+
+    public void UpdateBallsColor()
+    {
+        var newColor = _aimController.BallColor;
+        newColor.a = 255;
+        _currentBallImg.color = newColor;
+        
+        newColor = _aimController.NextBallColor;
+        newColor.a = 255;
+        _nextBallImg.color = newColor;
+    }
+
+    public void ChangeBallColor()
+    {
+        _aimController.ChangeColor();
+        UpdateBallsColor();
     }
 }

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         Services.Initialize();
         DontDestroyOnLoad(gameObject);
+        Services.UIManager.FindAimController();
     }
 
     public void StartGame()
