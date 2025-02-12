@@ -20,13 +20,18 @@ public class SphereController : MonoBehaviour
 
     private void Start()
     {
-        _layers = Services.GameManager.StartGame();
+        Services.GameManager.StartGame();
         GenerateSphere();
     }
 
     private void Update()
     {
         RotateSphere();
+    }
+
+    public void SetLayers(int layers)
+    {
+        _layers = layers;
     }
 
     private void GenerateSphere()
@@ -60,7 +65,7 @@ public class SphereController : MonoBehaviour
                 var closestPlateau = FindClosestPlateau(position);
                 var selectedColor = _plateauMap[closestPlateau];
 
-                var ball = _ballFactory.CreateBall(transform.position + position, selectedColor, transform, this);
+                var ball = _ballFactory.CreateBall(transform.position + position, selectedColor, transform);
 
                 layerBalls.Add(ball);
                 _totalBalls++;
@@ -162,6 +167,18 @@ public class SphereController : MonoBehaviour
         }
 
         return neighbors;
+    }
+
+    public void DestroyAllBalls()
+    {
+        foreach (var ball in _sphereLayers.SelectMany(layer => layer))
+        {
+            Destroy(ball);
+        }
+
+        _knockedBalls = _totalBalls;
+        Services.UIManager.UpdatePearlsText(_knockedBalls);
+        Services.GameManager.IsGameFinished(_totalBalls, _knockedBalls);
     }
 }
 

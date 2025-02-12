@@ -367,6 +367,7 @@
 "Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/FreeLookCam.cs"
 "Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/PivotBasedCameraRig.cs"
 "Assets/SimpleToon/Scripts/SelfRotation.cs"
+"Assets/TeKniKo_Free/Power_Ups/Scripts/ObjectBounce.cs"
 -langversion:9.0
 
 /deterministic
