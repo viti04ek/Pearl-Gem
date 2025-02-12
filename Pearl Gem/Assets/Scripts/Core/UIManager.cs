@@ -148,4 +148,19 @@ public class UIManager : MonoBehaviour
         _losePanel2CoinText.text = Services.GameManager.Coins.ToString();
         _losePanel2.GetComponent<RectTransform>().DOAnchorPosX(0, TweenDuration);
     }
+
+    public void ToMenu()
+    {
+        Services.SceneManager.LoadScene(SceneManager.MenuSceneName);
+    }
+
+    public void ToCollection()
+    {
+        Services.SceneManager.LoadScene(SceneManager.CollectionSceneName);
+    }
+
+    public void Restart()
+    {
+        Services.SceneManager.ReLoadScene();
+    }
 }
