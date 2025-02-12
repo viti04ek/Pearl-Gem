@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         Coins = 100;
     }
 
-    public void IsGameFinished(int totalPearls, int knockedPearls)
+    public void IsGameFinished(int totalPearls = 1, int knockedPearls = 0)
     {
         if (totalPearls == knockedPearls)
         {
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         }
         else if (_shots < 1)
         {
-            Debug.Log("Lost");
+            Lose();
         }
     }
 
@@ -105,5 +105,10 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         Services.UIManager.ShowWinPanel();
+    }
+
+    private void Lose()
+    {
+        Services.UIManager.ShowLosePanel1();
     }
 }

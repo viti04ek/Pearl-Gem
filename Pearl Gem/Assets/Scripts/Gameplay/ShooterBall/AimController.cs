@@ -94,6 +94,8 @@ public class AimController : MonoBehaviour
         _currentBall = null;
         GenerateBallsColor(NextBallColor);
         Invoke(nameof(GenerateNextBall), 1f);
+        
+        Services.GameManager.IsGameFinished();
     }
 
     private void GenerateBallsColor(Color? currentColor = null)

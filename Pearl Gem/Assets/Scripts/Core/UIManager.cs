@@ -31,6 +31,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text _levelText;
     [SerializeField] private Text _winPanelCoinText;
 
+    [Header("Lose panels")] 
+    [SerializeField] private GameObject _losePanel1;
+    [SerializeField] private Text _losePanel1CoinText;
+    [SerializeField] private GameObject _losePanel2;
+    [SerializeField] private Text _losePanel2CoinText;
+
     private AimController _aimController;
     private const float _tweenDuration = 0.7f;
 
@@ -120,5 +126,20 @@ public class UIManager : MonoBehaviour
         _levelText.text = $"Level {Services.GameManager.Level} completed!";
         _winPanelCoinText.text = Services.GameManager.Coins.ToString();
         _winPanel.GetComponent<RectTransform>().DOAnchorPosX(0, _tweenDuration);
+    }
+
+    public void ShowLosePanel1()
+    {
+        _losePanel1.SetActive(true);
+        _losePanel1CoinText.text = Services.GameManager.Coins.ToString();
+        _losePanel1.GetComponent<RectTransform>().DOAnchorPosX(0, _tweenDuration);
+    }
+
+    public void ShowLosePanel2()
+    {
+        _losePanel1.SetActive(false);
+        _losePanel2.SetActive(true);
+        _losePanel2CoinText.text = Services.GameManager.Coins.ToString();
+        _losePanel2.GetComponent<RectTransform>().DOAnchorPosX(0, _tweenDuration);
     }
 }

@@ -538,7 +538,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2cfbffff0e5b0000
+      m_ExpandedIDs: 2cfbffff645b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -931,9 +931,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -540, y: 960, z: 0}
+    m_Target: {x: -593.4096, y: 967.6395, z: 2.668335}
     speed: 2
-    m_Value: {x: -540, y: 960, z: 0}
+    m_Value: {x: -593.4096, y: 967.6395, z: 2.668335}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -979,13 +979,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.043777402, y: -0.029369595, z: 0.001286942, w: -0.9986127}
+    m_Target: {x: -0.040797543, y: -0.008394857, z: 0.000342216, w: -0.9991359}
     speed: 2
-    m_Value: {x: -0.04377723, y: -0.029369479, z: 0.001286937, w: -0.99860877}
+    m_Value: {x: -0.040797386, y: -0.008394825, z: 0.00034221468, w: -0.9991321}
   m_Size:
-    m_Target: 1101.4536
+    m_Target: 947.5514
     speed: 2
-    m_Value: 1101.4536
+    m_Value: 947.5514
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1125,7 +1125,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts/Core
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1133,16 +1133,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts/Core
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity\Pearl-Gem\Pearl Gem
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 31}
-    m_SelectedIDs: 1c5c0000
-    m_LastClickedID: 23580
-    m_ExpandedIDs: 00000000065c0000085c00000a5c00000c5c0000125c0000
+    scrollPos: {x: 0, y: 6}
+    m_SelectedIDs: ac5c0000
+    m_LastClickedID: 23724
+    m_ExpandedIDs: 000000008a5c00008c5c00008e5c0000905c0000925c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1170,7 +1170,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000065c0000085c00000a5c00000c5c0000
+    m_ExpandedIDs: 000000008a5c00008c5c00008e5c0000905c0000925c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1198,7 +1198,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000166100005c610000d8610000a25a0000a65a0000945b0000
+    m_ExpandedInstanceIDs: c6230000166100005c610000d8610000a25a0000a65a0000945b0000fe5b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
