@@ -8,15 +8,16 @@ public class SphereController : MonoBehaviour
     [SerializeField] private BallFactory _ballFactory;
     
     private int _layers = 3;
-    private const float LayerSpacing = 0.5f;
-    private const float BallSize = 0.2f;
-    private const float RotationSpeed = 20f;
-    private const float MinRadius = 1f;
     private int _knockedBalls = 0;
     private int _totalBalls = 0;
     private readonly List<Vector3> _plateauCenters = new();
     private readonly Dictionary<Vector3, Color> _plateauMap = new();
     private readonly List<List<GameObject>> _sphereLayers = new();
+    
+    private const float LayerSpacing = 0.5f;
+    private const float BallSize = 0.2f;
+    private const float RotationSpeed = 20f;
+    private const float MinRadius = 1f;
 
     private void Start()
     {

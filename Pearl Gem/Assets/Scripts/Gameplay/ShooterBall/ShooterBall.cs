@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class ShooterBall : Ball
 {
-    private float _speed = 15f;
     private bool _hasCollided = false;
-    private const string _ballKey = "Ball";
-    private const string _starKey = "Star";
+    
+    private const float Speed = 15f;
+    private const string BallKey = "Ball";
+    private const string StarKey = "Star";
 
     private void Start()
     {
@@ -17,7 +18,7 @@ public class ShooterBall : Ball
     public void Launch(Vector3 direction)
     {
         _rigidbody.useGravity = true;
-        _rigidbody.velocity = direction.normalized * _speed;
+        _rigidbody.velocity = direction.normalized * Speed;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -26,12 +27,12 @@ public class ShooterBall : Ball
 
         _hasCollided = true;
 
-        if (collision.gameObject.CompareTag(_starKey))
+        if (collision.gameObject.CompareTag(StarKey))
         {
             Services.GameManager.HitStar();
             Destroy(collision.gameObject);
         }
-        else if (collision.gameObject.CompareTag(_ballKey))
+        else if (collision.gameObject.CompareTag(BallKey))
         {
             var otherBall = collision.gameObject.GetComponent<Ball>();
         

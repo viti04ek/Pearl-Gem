@@ -11,19 +11,20 @@ public class AimController : MonoBehaviour
     public Color BallColor { get; private set; }
     public Color NextBallColor { get; private set; }
     
-    private float _maxAimAngle = 60f;
-    private int _trajectorySteps = 30;
-    private float _timeStep = 0.05f;
     private Camera _mainCamera;
     private bool _isAiming = false;
     private Vector3 _aimDirection;
     private GameObject _currentBall;
     private Rigidbody _ballRigidbody;
+    
+    private const float MaxAimAngle = 60f;
+    private const int TrajectorySteps = 30;
+    private const float TimeStep = 0.05f;
 
     private void Start()
     {
         _mainCamera = Camera.main;
-        _aimLine.positionCount = _trajectorySteps;
+        _aimLine.positionCount = TrajectorySteps;
         _aimLine.enabled = false;
         GenerateBallsColor();
         GenerateNextBall();
@@ -50,8 +51,8 @@ public class AimController : MonoBehaviour
             var worldPos = _mainCamera.ScreenToWorldPoint(mousePos);
             _aimDirection = (worldPos - _shootPoint.position).normalized;
 
-            _aimDirection.y = Mathf.Clamp(_aimDirection.y, -Mathf.Sin(_maxAimAngle * Mathf.Deg2Rad), 
-                Mathf.Sin(_maxAimAngle * Mathf.Deg2Rad));
+            _aimDirection.y = Mathf.Clamp(_aimDirection.y, -Mathf.Sin(MaxAimAngle * Mathf.Deg2Rad), 
+                Mathf.Sin(MaxAimAngle * Mathf.Deg2Rad));
 
             DrawTrajectory(_aimDirection);
         }
@@ -132,11 +133,11 @@ public class AimController : MonoBehaviour
         var startPosition = _shootPoint.position;
         var velocity = direction * (_ballRigidbody.mass * 15f);
 
-        _aimLine.positionCount = _trajectorySteps;
+        _aimLine.positionCount = TrajectorySteps;
 
-        for (var i = 0; i < _trajectorySteps; i++)
+        for (var i = 0; i < TrajectorySteps; i++)
         {
-            var time = i * _timeStep;
+            var time = i * TimeStep;
             var point = startPosition + velocity * time + Physics.gravity * (0.5f * time * time);
             _aimLine.SetPosition(i, point);
         }

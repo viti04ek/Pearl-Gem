@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour
     [SerializeField] protected Renderer _ballRenderer;
     [SerializeField] protected Rigidbody _rigidbody;
     public Color BallColor { get; protected set; }
-    private const string _deleteTriggerKey = "DeleteTrigger";
+    private const string DeleteTriggerKey = "DeleteTrigger";
 
     public void SetColor(Color newColor)
     {
@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(_deleteTriggerKey))
+        if (other.CompareTag(DeleteTriggerKey))
         {
             Destroy(gameObject);
         }

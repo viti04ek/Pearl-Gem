@@ -16,11 +16,13 @@ public class GameManager : MonoBehaviour
     private int _shots;
     private SphereController _sphere;
     private int _successfulHits = 0;
-    private int _hitsForStar = 4;
     private GameObject _starObject;
-
-    private const int _minLayers = 2;
-    private const int _maxLayers = 5;
+    
+    private const int HitsForStar = 4;
+    private const int MinLayers = 2;
+    private const int MaxLayers = 5;
+    private const int MoneyForWin = 15;
+    private const int MoneyForBall = 3;
     
     private void Awake()
     {
@@ -33,7 +35,8 @@ public class GameManager : MonoBehaviour
     {
         _sphere = null;
         _sphere = FindObjectOfType<SphereController>();
-        var layers = Random.Range(_minLayers, _maxLayers);
+        var layers = Random.Range(MinLayers, MaxLayers);
+        _shots = 0;
         _shots = layers * 5;
         _sphere.SetLayers(layers);
         Services.UIManager.UpdateShotsText(_shots);
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour
         _successfulHits++;
         Services.UIManager.AddStarBar(_successfulHits - 1);
 
-        if (_successfulHits >= _hitsForStar)
+        if (_successfulHits >= HitsForStar)
         {
             SpawnStar();
         }
@@ -104,6 +107,7 @@ public class GameManager : MonoBehaviour
 
     private void Win()
     {
+        Coins += MoneyForWin + MoneyForBall * _shots;
         Services.UIManager.ShowWinPanel();
     }
 

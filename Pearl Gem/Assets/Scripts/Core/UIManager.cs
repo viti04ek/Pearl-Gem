@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text _losePanel2CoinText;
 
     private AimController _aimController;
-    private const float _tweenDuration = 0.7f;
+    private const float TweenDuration = 0.7f;
 
     public void FindAimController()
     {
@@ -79,13 +79,13 @@ public class UIManager : MonoBehaviour
     public void OpenSettings()
     {
         _settingsPanel.SetActive(true);
-        _settingsPanel.GetComponent<RectTransform>().DOAnchorPosX(0, _tweenDuration);
+        _settingsPanel.GetComponent<RectTransform>().DOAnchorPosX(0, TweenDuration);
     }
 
     public void CloseSettings()
     {
-        _settingsPanel.GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, _tweenDuration);
-        Invoke(nameof(HideSettingsPanel), _tweenDuration);
+        _settingsPanel.GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, TweenDuration);
+        Invoke(nameof(HideSettingsPanel), TweenDuration);
     }
 
     private void HideSettingsPanel()
@@ -125,14 +125,14 @@ public class UIManager : MonoBehaviour
         _winPanel.SetActive(true);
         _levelText.text = $"Level {Services.GameManager.Level} completed!";
         _winPanelCoinText.text = Services.GameManager.Coins.ToString();
-        _winPanel.GetComponent<RectTransform>().DOAnchorPosX(0, _tweenDuration);
+        _winPanel.GetComponent<RectTransform>().DOAnchorPosX(0, TweenDuration);
     }
 
     public void ShowLosePanel1()
     {
         _losePanel1.SetActive(true);
         _losePanel1CoinText.text = Services.GameManager.Coins.ToString();
-        _losePanel1.GetComponent<RectTransform>().DOAnchorPosX(0, _tweenDuration);
+        _losePanel1.GetComponent<RectTransform>().DOAnchorPosX(0, TweenDuration);
     }
 
     public void ShowLosePanel2()
@@ -140,6 +140,6 @@ public class UIManager : MonoBehaviour
         _losePanel1.SetActive(false);
         _losePanel2.SetActive(true);
         _losePanel2CoinText.text = Services.GameManager.Coins.ToString();
-        _losePanel2.GetComponent<RectTransform>().DOAnchorPosX(0, _tweenDuration);
+        _losePanel2.GetComponent<RectTransform>().DOAnchorPosX(0, TweenDuration);
     }
 }
