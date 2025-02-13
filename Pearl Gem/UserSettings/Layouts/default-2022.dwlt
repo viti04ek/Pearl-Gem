@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -538,7 +538,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2cfbffff705c00007a5c0000ba5c0000e85c0000
+      m_ExpandedIDs: a2f4ffff2cfbffffd25a0000545b0000665b0000285c0000705c0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1125,7 +1125,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Sprites
+    - Assets/2D Casual UI/Sprite
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1133,15 +1133,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Sprites
+  - Assets/2D Casual UI/Sprite
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity\Pearl-Gem\Pearl Gem
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 180}
-    m_SelectedIDs: 185e0000
-    m_LastClickedID: 24088
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 005e0000
+    m_LastClickedID: 24064
     m_ExpandedIDs: 00000000f25d0000f45d0000f65d0000f85d0000125e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1248,7 +1248,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 729
-    width: 1555
+    width: 1553
     height: 270
   m_SerializedDataModeController:
     m_DataMode: 0

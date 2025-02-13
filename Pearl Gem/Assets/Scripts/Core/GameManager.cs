@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     private const int MaxLayers = 5;
     private const int MoneyForWin = 15;
     private const int MoneyForBall = 3;
+    private const int AddBalls = 5;
+    private const int PriceToContinue = 50;
     
     private void Awake()
     {
@@ -128,5 +130,22 @@ public class GameManager : MonoBehaviour
         RainbowBallsAmount--;
         Services.DataManager.SaveField(DataManager.RainbowBallsKey, RainbowBallsAmount);
         return true;
+    }
+
+    public bool TryToContinueForMoney()
+    {
+        if (PriceToContinue > Coins)
+            return false;
+
+        Coins -= PriceToContinue;
+        ContinueGame();
+        return true;
+    }
+
+    private void ContinueGame()
+    {
+        _shots += AddBalls;
+        Services.UIManager.ContinueGame();
+        Services.UIManager.UpdateShotsText(_shots);
     }
 }

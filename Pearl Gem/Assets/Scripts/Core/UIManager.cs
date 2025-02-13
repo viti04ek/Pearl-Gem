@@ -42,6 +42,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _losePanel2;
     [SerializeField] private Text _losePanel2CoinText;
 
+    [Header("Error anel")] 
+    [SerializeField] private GameObject _errorPanel;
+    [SerializeField] private Text _errorText;
+
     private AimController _aimController;
     private const float TweenDuration = 0.7f;
 
@@ -198,5 +202,43 @@ public class UIManager : MonoBehaviour
         newColor.a = 255;
         _currentBallImg.color = newColor;
         _currentBallImg.sprite = _rainbowBallSprite;
+    }
+
+    public void TryToContinueForMoney()
+    {
+        if (!Services.GameManager.TryToContinueForMoney())
+        {
+            var msg = "You dont have enough coins";
+            OpenErrorPanel(msg);
+        }
+    }
+
+    private void OpenErrorPanel(string msg)
+    {
+        _errorPanel.SetActive(true);
+        _errorText.text = msg;
+        _errorPanel.GetComponent<RectTransform>().DOAnchorPosX(0, TweenDuration);
+    }
+
+    public void ContinueGame()
+    {
+        _losePanel1.GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, TweenDuration);
+        Invoke(nameof(HideLosePanel1), TweenDuration);
+    }
+
+    private void HideLosePanel1()
+    {
+        _losePanel1.SetActive(false);
+    }
+
+    public void CloseErrorPanel()
+    {
+        _errorPanel.GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, TweenDuration);
+        Invoke(nameof(HideErrorPanel), TweenDuration);
+    }
+
+    private void HideErrorPanel()
+    {
+        _errorPanel.SetActive(false);
     }
 }
