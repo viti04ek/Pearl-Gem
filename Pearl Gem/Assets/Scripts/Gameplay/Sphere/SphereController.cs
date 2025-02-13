@@ -176,7 +176,6 @@ public class SphereController : MonoBehaviour
         foreach (var ball in _sphereLayers.SelectMany(layer => layer))
         {
             ball.GetComponent<Ball>().IsKinematic();
-            //Destroy(ball);
         }
 
         _knockedBalls = _totalBalls;

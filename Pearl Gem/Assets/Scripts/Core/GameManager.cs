@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private const int MoneyForBall = 3;
     private const int AddBalls = 5;
     private const int PriceToContinue = 50;
+    private const float WinDuration = 2f;
     
     private void Awake()
     {
@@ -53,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (totalPearls == knockedPearls)
         {
             _pearlsScored = totalPearls;
-            Win();
+            Invoke(nameof(Win), WinDuration);
         }
         else if (_shots < 1)
         {

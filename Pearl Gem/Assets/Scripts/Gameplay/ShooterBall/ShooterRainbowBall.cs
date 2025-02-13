@@ -6,17 +6,11 @@ public class ShooterRainbowBall : ShooterBall
 {
     protected override void OnCollisionEnter(Collision collision)
     {
-        if (_hasCollided) return;
-
-        _hasCollided = true;
-
-        if (collision.gameObject.CompareTag(StarKey))
+        if (HasCollided) return;
+        
+        if (collision.gameObject.CompareTag(BallKey))
         {
-            Services.GameManager.HitStar();
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.CompareTag(BallKey))
-        {
+            HasCollided = true;
             var otherBall = collision.gameObject.GetComponent<Ball>();
         
             if (otherBall != null)

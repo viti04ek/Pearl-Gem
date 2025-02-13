@@ -369,6 +369,7 @@
 "Assets/Scripts/Gameplay/Sphere/Ball.cs"
 "Assets/Scripts/Gameplay/Sphere/BallFactory.cs"
 "Assets/Scripts/Gameplay/Sphere/SphereController.cs"
+"Assets/Scripts/Gameplay/Sphere/Star.cs"
 "Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/AbstractTargetFollower.cs"
 "Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/FreeLookCam.cs"
 "Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/PivotBasedCameraRig.cs"
